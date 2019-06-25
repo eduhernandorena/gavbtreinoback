@@ -28,4 +28,7 @@ public class Address {
     private String state;
     @JsonProperty("cidade")
     private String city;
+
+    public Address() {
+    }
 }

@@ -30,4 +30,6 @@ public class Client {
     @JsonProperty("telefone")
     private String phone;
 
+    public Client() {
+    }
 }

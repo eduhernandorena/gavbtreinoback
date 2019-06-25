@@ -23,6 +23,9 @@ public class Partners {
     @JsonProperty("nome")
     private String name;
 
+    public Partners() {
+    }
+
     public Partners(String codeDescription, String name) {
         this.codeDescription = codeDescription;
         this.name = name;

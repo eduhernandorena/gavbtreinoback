@@ -22,6 +22,9 @@ public class Activity {
     @JsonProperty("text")
     private String description;
 
+    public Activity() {
+    }
+
     public Activity(String code, String description) {
         this.code = code;
         this.description = description;

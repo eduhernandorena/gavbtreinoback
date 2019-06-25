@@ -11,4 +11,7 @@ import javax.persistence.Entity;
 public class Person extends Client {
     private String cpf;
     private String name;
+
+    public Person() {
+    }
 }

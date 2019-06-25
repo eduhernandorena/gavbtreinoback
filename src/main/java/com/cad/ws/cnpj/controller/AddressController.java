@@ -1,18 +1,25 @@
 package com.cad.ws.cnpj.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.cad.ws.cnpj.models.Address;
+import com.cad.ws.cnpj.repositories.AddressRepository;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+
 @RequestMapping("/address")
 public class AddressController {
 
-    @GetMapping
-    public String getAddress() {
-        return "Consulta de Endereco";
+    private AddressRepository addressRepository;
+
+    @GetMapping(produces = "application/json")
+    public List<Address> getAdresses() {
+        return addressRepository.findAll();
     }
 
+    @PostMapping(value = "/add", consumes = "application/json", produces = "application/json")
+    public Address addAddress(Address address){
+        return addressRepository.save(address);
+    }
 }

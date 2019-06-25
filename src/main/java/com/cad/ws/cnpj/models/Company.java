@@ -38,4 +38,7 @@ public class Company extends Client {
     @OneToMany
     @JsonProperty("qsa")
     private List<Partners> partners = new ArrayList<>();
+
+    public Company() {
+    }
 }
