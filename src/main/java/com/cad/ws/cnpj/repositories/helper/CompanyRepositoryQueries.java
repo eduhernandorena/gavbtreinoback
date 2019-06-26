@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface CompanyRepositoryQueries {
 
-    public List<Company> filtrar(Company company);
+    List<Company> filtrar(Company company);
 }

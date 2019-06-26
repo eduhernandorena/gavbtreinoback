@@ -1,15 +1,13 @@
 package com.cad.ws.cnpj.repositories.helper;
 
-import com.cad.ws.cnpj.models.Client;
 import com.cad.ws.cnpj.models.Company;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Restrictions;
-import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class CompanyRepositoryImpl implements CompanyRepositoryQueries {
@@ -17,18 +15,18 @@ public class CompanyRepositoryImpl implements CompanyRepositoryQueries {
     @PersistenceContext
     private EntityManager manager;
 
-    //@SuppressWarnings("unchecked")
     @Override
-    //@Transactional(readOnly = true)
     public List<Company> filtrar(Company company) {
-        Criteria criteria = manager.unwrap(Session.class).createCriteria(Client.class);
+        CriteriaBuilder cb = manager.getCriteriaBuilder();
+        CriteriaQuery<Company> cq = cb.createQuery(Company.class);
+        Root<Company> companyRoot = cq.from(Company.class);
 
         if (company != null) {
-            if (!StringUtils.isEmpty(company.getEmail())) {
-                criteria.add(Restrictions.ilike("email", company.getEmail(), MatchMode.ANYWHERE));
+            if (!company.getEmail().isEmpty()) {
+                Predicate pred = cb.like(companyRoot.get("email"), "%" + company.getEmail() + "%");
+                cq.where(pred);
             }
         }
-
-        return criteria.list();
+        return manager.createQuery(cq).getResultList();
     }
 }
