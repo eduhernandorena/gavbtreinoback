@@ -32,4 +32,10 @@ public class Client {
 
     public Client() {
     }
+
+    public Client(String active, String email, String phone) {
+        this.active = active;
+        this.email = email;
+        this.phone = phone;
+    }
 }

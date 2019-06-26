@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,4 +39,11 @@ public class Company extends Client {
 
     public Company() {
     }
+
+    public Company(String active, String email, String phone) {
+        super.setEmail(email);
+        super.setActive(active);
+        super.setPhone(phone);
+    }
+
 }
