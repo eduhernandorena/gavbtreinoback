@@ -15,8 +15,8 @@ public class DataInitializr implements ApplicationListener<ContextRefreshedEvent
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        this.createUsers("True", "viniciusmendes.gavb.com.br", "99117268");
-        this.createUsers("True", "Eduardo.gavb.com.br", "597752152");
+        this.createUsers("True", "viniciusmendes@gavb.com.br", "991172668");
+        this.createUsers("True", "eduardo@gavb.com.br", "597752152");
     }
 
     public void createUsers(String active, String email, String phone) {

@@ -1,6 +1,7 @@
 package com.cad.ws.cnpj.repositories.helper;
 
 import com.cad.ws.cnpj.models.Company;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,7 +23,7 @@ public class CompanyRepositoryImpl implements CompanyRepositoryQueries {
         Root<Company> companyRoot = cq.from(Company.class);
 
         if (company != null) {
-            if (!company.getEmail().isEmpty()) {
+            if (!StringUtils.isEmpty(company.getEmail())) {
                 Predicate pred = cb.like(companyRoot.get("email"), "%" + company.getEmail() + "%");
                 cq.where(pred);
             }
